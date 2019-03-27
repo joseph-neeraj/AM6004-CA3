@@ -12,7 +12,20 @@ namespace AM6004_CA3
         {
             for (int k = 0; k < n - 2; k++)
             {
+                double q = 0;
+                for (int i = 0; i < A.GetLength(0); i++)
+                {
+                    q += A[i, k] * A[i, k];
+                }
 
+                double alpha;
+                if (A[k + 1, k] == 0)
+                {
+                    alpha = -Math.Sqrt(q);
+                } else
+                {
+
+                }
             }
         }
     }
