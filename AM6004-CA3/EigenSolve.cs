@@ -24,8 +24,10 @@ namespace AM6004_CA3
                     alpha = -Math.Sqrt(q);
                 } else
                 {
-
+                    alpha = -((Math.Sqrt(q) * A[k + 1, k]) / Math.Abs(A[k + 1, k]));
                 }
+
+                double rsq = (alpha * alpha) - (alpha * A[k + 1, k]);
             }
         }
     }
