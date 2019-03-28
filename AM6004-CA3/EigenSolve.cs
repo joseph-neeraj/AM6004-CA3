@@ -16,12 +16,15 @@ namespace AM6004_CA3
 
             for (int k = 0; k < n - 2; k++)
             {
+                // Step 2
                 double q = 0;
                 for (int i = 0; i < A.GetLength(0); i++)
                 {
                     q += A[i, k] * A[i, k];
                 }
 
+
+                // Step 3
                 double alpha;
                 if (A[k + 1, k] == 0)
                 {
@@ -31,6 +34,7 @@ namespace AM6004_CA3
                     alpha = -((Math.Sqrt(q) * A[k + 1, k]) / Math.Abs(A[k + 1, k]));
                 }
 
+                // Step 4
                 double rsq = (alpha * alpha) - (alpha * A[k + 1, k]);
 
                 // Step 5 
@@ -66,7 +70,17 @@ namespace AM6004_CA3
                 {
                     z[i] = u[i] - (prod / (2 * rsq)) * v[i];
                 }
-                
+
+                // Step 9
+                for (int l = k + 1; l < n; l++)
+                {
+                    // Step 10
+                    for (int i = l + 1; i < n; i++)
+                    {
+                        A[i, l] = A[i, l] - (v[l] * z[i]) - (v[i] * z[l]);
+                        A[l, i] = A[i, l];
+                    }
+                }
             }
         }
     }
