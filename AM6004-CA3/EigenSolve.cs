@@ -80,8 +80,26 @@ namespace AM6004_CA3
                         A[i, l] = A[i, l] - (v[l] * z[i]) - (v[i] * z[l]);
                         A[l, i] = A[i, l];
                     }
+
+                    // Step 11
+                    A[l, l] = A[l, l] - (2 * v[l] * z[l]);
                 }
+
+                // Step 12
+                A[n - 1, n - 1] = A[n - 1, n - 1] - (2 * v[n - 1] * z[n - 1]);
+
+                // Step 13
+                for (int j = k + 2; j <= n; j++)
+                {
+                    A[k, j] = A[j, k] = 0;
+                }
+
+                // Step 14
+                A[k + 1, k] = A[k + 1, k] - (v[k + 1] * z[k]);
+                A[k, k + 1] = A[k + 1, k];
             }
+
+            MatrixOps.PrettyPrint(A);
         }
     }
 }
