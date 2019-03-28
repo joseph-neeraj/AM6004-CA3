@@ -12,6 +12,7 @@ namespace AM6004_CA3
         {
             double[] v = new double[n - 1];
             double[] u = new double[n];
+            double[] z = new double[n];
 
             for (int k = 0; k < n - 2; k++)
             {
@@ -51,6 +52,19 @@ namespace AM6004_CA3
                     }
 
                     u[i] = sum;
+                }
+
+                // Step 7
+                double prod = 0;
+                for (int i = k + 1; i < n; i++)
+                {
+                    prod += v[i] * u[i];
+                }
+
+                // Step 8 
+                for (int i = k; i < n; i++)
+                {
+                    z[i] = u[i] - (prod / (2 * rsq)) * v[i];
                 }
                 
             }
