@@ -10,6 +10,9 @@ namespace AM6004_CA3
     {
         static public void Householder(ref double[,] A, int n)
         {
+            double[] v = new double[n - 1];
+            double[] u = new double[n];
+
             for (int k = 0; k < n - 2; k++)
             {
                 double q = 0;
@@ -28,6 +31,28 @@ namespace AM6004_CA3
                 }
 
                 double rsq = (alpha * alpha) - (alpha * A[k + 1, k]);
+
+                // Step 5 
+                v[k] = 0;
+                v[k + 1] = A[k + 1, k] - alpha;
+
+                for (int i = k + 2; i < n; i++)
+                {
+                    v[i] = A[i, k];
+                }
+
+                // Step 6
+                for (int i = k; k < n; i++)
+                {
+                    double sum = 0;
+                    for (int j = k + 1; j < n; j++)
+                    {
+                        sum += A[i, j] * v[j];
+                    }
+
+                    u[i] = sum;
+                }
+                
             }
         }
     }
