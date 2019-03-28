@@ -101,5 +101,17 @@ namespace AM6004_CA3
 
             MatrixOps.PrettyPrint(A);
         }
+
+        static public double[] QR(double[] a, double[] b, int n, int MaxIt)
+        {
+            int shift = 0;
+
+            for (int k = 0; k < MaxIt; )
+            {
+                // Step 3
+
+            }
+            
+        }
     }
 }
