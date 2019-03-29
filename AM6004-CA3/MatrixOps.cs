@@ -21,6 +21,31 @@ namespace AM6004_CA3
             }
             return y;
         }
+
+        // Gets the main diagonal of a square matrix
+        public static double[] GetMainDiagonal(double[,] A)
+        {
+            double[] diagonal = new double[A.GetLength(0)];
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                diagonal[i] = A[i, i];
+            }
+
+            return diagonal;
+        }
+
+        // Gets the sub diagonal of a square matrix
+        public static double[] GetSubDiagonal(double[,] A)
+        {
+            double[] diagonal = new double[A.GetLength(0) - 1];
+            for (int i = 0; i < A.GetLength(0) - 1; i++)
+            {
+                diagonal[i] = A[i, i + 1];
+            }
+
+            return diagonal;
+        }
+
         // returns the the smallest index of x whose absolute value is equal to the supremum norm.
         static public int SupNormInd(double[] x, int n)
         {

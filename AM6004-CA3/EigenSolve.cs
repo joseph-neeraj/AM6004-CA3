@@ -154,7 +154,7 @@ namespace AM6004_CA3
                     cVect[i] = xVect[i - 1] / zVect[i - 1];
                     sigmaVect[i] = b[i] / zVect[i - 1];
 
-                    double denominator = Math.Sqrt((b[i] * b[i]) + (xVect[i - 1] * xVect[i - 1]);
+                    double denominator = Math.Sqrt((b[i] * b[i]) + (xVect[i - 1] * xVect[i - 1]));
                     double si = b[i] / denominator;
                     qVect[i - 1] = (cVect[i] * yVect[i - 1]) + (si * dVect[i]);
 
