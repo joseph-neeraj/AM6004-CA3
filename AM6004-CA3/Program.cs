@@ -10,6 +10,15 @@ namespace AM6004_CA3
     {
         static void Main(string[] args)
         {
+            double[,] inputMatrix = new double[3, 3]
+            {
+                {12, 10, 4},
+                {10, 8, -5},
+                {4, -5, 3}
+            };
+
+            EigenSolve.Householder(ref inputMatrix, 3);
+            Console.ReadLine();
         }
     }
 }

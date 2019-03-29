@@ -10,17 +10,18 @@ namespace AM6004_CA3
     {
         static public void Householder(ref double[,] A, int n)
         {
-            double[] v = new double[n - 1];
+            double[] v = new double[n];
             double[] u = new double[n];
             double[] z = new double[n];
-
+            
+            // Step 1
             for (int k = 0; k < n - 2; k++)
             {
                 // Step 2
                 double q = 0;
-                for (int i = 0; i < A.GetLength(0); i++)
+                for (int i = k + 1; i < n; i++)
                 {
-                    q += A[i, k] * A[i, k];
+                    q += (A[i, k] * A[i, k]);
                 }
 
 
@@ -47,22 +48,22 @@ namespace AM6004_CA3
                 }
 
                 // Step 6
-                for (int i = k; k < n; i++)
+                for (int i = k; i < n; i++)
                 {
                     double sum = 0;
                     for (int j = k + 1; j < n; j++)
                     {
-                        sum += A[i, j] * v[j];
+                        sum += (A[i, j] * v[j]);
                     }
 
-                    u[i] = sum;
+                    u[i] = sum / rsq;
                 }
 
                 // Step 7
                 double prod = 0;
                 for (int i = k + 1; i < n; i++)
                 {
-                    prod += v[i] * u[i];
+                    prod += (v[i] * u[i]);
                 }
 
                 // Step 8 
@@ -89,7 +90,7 @@ namespace AM6004_CA3
                 A[n - 1, n - 1] = A[n - 1, n - 1] - (2 * v[n - 1] * z[n - 1]);
 
                 // Step 13
-                for (int j = k + 2; j <= n; j++)
+                for (int j = k + 2; j < n; j++)
                 {
                     A[k, j] = A[j, k] = 0;
                 }
@@ -105,14 +106,17 @@ namespace AM6004_CA3
         static public double[] QR(double[] a, double[] b, int n, int MaxIt)
         {
             double[,] P = MatrixOps.IdentityMatrix(n);
+            List<double[,]> rotationMatrices = new List<double[,]>();
             for (int k = 1; k <= n; k++)
             {
                 double denominator = Math.Sqrt(b[k + 1] * b[k + 1] + a[k] * a[k]);
                 double s = b[k + 1] / denominator;
                 double c = a[k] / denominator;
 
-                P[k]
+              //  double[,] rotationMatrix = MatrixOps.GenerateRotationMatix(s, c);
             }
+
+            return null;
             
         }
     }

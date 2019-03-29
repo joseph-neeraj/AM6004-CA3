@@ -115,7 +115,7 @@ namespace AM6004_CA3
             }
         }
 
-        internal static double[,] IdentityMatrix(int n)
+        public static double[,] IdentityMatrix(int n)
         {
             double[,] identity = new double[n, n];
             for (int i = 0; i < n; i++)
@@ -124,6 +124,18 @@ namespace AM6004_CA3
             }
 
             return identity;
+        }
+
+        public static double[,] Generate3x3RotationMatix(double s, double c)
+        {
+            int n = 3;
+            double[,] identityMatrix = IdentityMatrix(3);
+            for (int i = 0; i < n; i++)
+            {
+
+            }
+
+            return null;
         }
     }
 }
