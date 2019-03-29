@@ -105,7 +105,7 @@ namespace AM6004_CA3
         {
             int k = 0;
             double[] dVect = (double[])a.Clone();
-            double[] zVect = new double[n - 1];
+            double[] zVect = new double[n];
             double[] xVect = new double[n];
             double[] cVect = new double[n];
             double[] sigmaVect = new double[n];
@@ -152,10 +152,10 @@ namespace AM6004_CA3
                 {
                     zVect[i - 1] = Math.Sqrt((xVect[i - 1] * xVect[i - 1]) + (b[i - 1] * b[i - 1]));
                     cVect[i] = xVect[i - 1] / zVect[i - 1];
-                    sigmaVect[i] = b[i] / zVect[i - 1];
+                    sigmaVect[i] = b[i -1] / zVect[i - 1];
 
                     double denominator = Math.Sqrt((b[i - 1] * b[i - 1]) + (xVect[i - 1] * xVect[i - 1]));
-                    double si = b[i] / denominator;
+                    double si = b[i - 1] / denominator;
                     qVect[i - 1] = (cVect[i] * yVect[i - 1]) + (si * dVect[i]);
 
                     double ci = xVect[i - 1] / denominator;
@@ -174,7 +174,7 @@ namespace AM6004_CA3
                 b[0] = sigmaVect[1] * zVect[1];
 
                 //Step 17
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i < n - 1; i++)
                 {
                     a[i] = (sigmaVect[i + 1] * qVect[i]) + (cVect[i] * cVect[i + 1] * zVect[i]);
                     b[i] = sigmaVect[i + 1] * zVect[i + 1];
