@@ -171,13 +171,32 @@ namespace AM6004_CA3
                 // Step 16
                 zVect[n - 1] = xVect[n - 1];
                 a[0] = (sigmaVect[1] * qVect[0]) + cVect[1] * zVect[0];
-                b[1] = sigmaVect[1] * zVect[1];
+                b[0] = sigmaVect[1] * zVect[1];
 
                 //Step 17
+                for (int i = 1; i < n; i++)
+                {
+                    a[i] = (sigmaVect[i + 1] * qVect[i]) + (cVect[i] * cVect[i + 1] * zVect[i]);
+                    b[i] = sigmaVect[i + 1] * zVect[i + 1];
+                }
 
+                // Step 18
+                a[n - 1] = cVect[n - 1] * zVect[n - 1];
             }
 
-            return null;
+            // Copy a and b to the outputVector
+            double[] outPutVect = new double[2*n - 1];
+            for (int i = 0; i < n; i++)
+            {
+                outPutVect[i] = a[i];
+            }
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                outPutVect[i + n] = b[i];
+            }
+
+            return outPutVect;
             
         }
     }
