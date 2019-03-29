@@ -104,10 +104,14 @@ namespace AM6004_CA3
 
         static public double[] QR(double[] a, double[] b, int n, int MaxIt)
         {
-            double[,] P = new double[n, n];
+            double[,] P = MatrixOps.IdentityMatrix(n);
             for (int k = 1; k <= n; k++)
             {
+                double denominator = Math.Sqrt(b[k + 1] * b[k + 1] + a[k] * a[k]);
+                double s = b[k + 1] / denominator;
+                double c = a[k] / denominator;
 
+                P[k]
             }
             
         }

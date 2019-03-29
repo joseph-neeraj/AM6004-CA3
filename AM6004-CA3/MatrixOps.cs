@@ -114,5 +114,16 @@ namespace AM6004_CA3
                 Console.WriteLine();
             }
         }
+
+        internal static double[,] IdentityMatrix(int n)
+        {
+            double[,] identity = new double[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                identity[i, i] = 1;
+            }
+
+            return identity;
+        }
     }
 }
