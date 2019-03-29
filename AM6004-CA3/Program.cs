@@ -22,6 +22,10 @@ namespace AM6004_CA3
 
             EigenSolve.Householder(ref inputMatrix, 3);
 
+            Console.WriteLine("Matrix after Householder transformation");
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine(MatrixOps.PrettyString(inputMatrix));
+
             double[] a = MatrixOps.GetMainDiagonal(inputMatrix);
             double[] b = MatrixOps.GetSubDiagonal(inputMatrix);
 

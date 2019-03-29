@@ -118,7 +118,7 @@ namespace AM6004_CA3
             {
                 // Step 8
                 double b2 = -(a[n - 2] + a[n - 1]);
-                double c = (a[n - 1] * a[n - 2]) - (b[n - 1] * b[n - 1]);
+                double c = (a[n - 1] * a[n - 2]) - (b[n - 2] * b[n - 2]);
                 double d = Math.Sqrt((b2 * b2) - (4 * c));
 
                 // Step 9
@@ -150,11 +150,11 @@ namespace AM6004_CA3
                 // Step 15
                 for (int i = 1; i < n; i++)
                 {
-                    zVect[i - 1] = Math.Sqrt((xVect[i - 1] * xVect[i - 1]) + (b[i] * b[i]));
+                    zVect[i - 1] = Math.Sqrt((xVect[i - 1] * xVect[i - 1]) + (b[i - 1] * b[i - 1]));
                     cVect[i] = xVect[i - 1] / zVect[i - 1];
                     sigmaVect[i] = b[i] / zVect[i - 1];
 
-                    double denominator = Math.Sqrt((b[i] * b[i]) + (xVect[i - 1] * xVect[i - 1]));
+                    double denominator = Math.Sqrt((b[i - 1] * b[i - 1]) + (xVect[i - 1] * xVect[i - 1]));
                     double si = b[i] / denominator;
                     qVect[i - 1] = (cVect[i] * yVect[i - 1]) + (si * dVect[i]);
 
@@ -163,8 +163,8 @@ namespace AM6004_CA3
 
                     if (i != (n - 1))
                     {
-                        rVect[i - 1] = sigmaVect[i] * b[i + 1];
-                        yVect[i] = cVect[i] * b[i + 1]; 
+                        rVect[i - 1] = sigmaVect[i] * b[i];
+                        yVect[i] = cVect[i] * b[i]; 
                     }
                 }
 
