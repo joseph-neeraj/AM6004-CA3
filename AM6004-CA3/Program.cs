@@ -23,7 +23,8 @@ namespace AM6004_CA3
             string houseHolderOutput = MatrixOps.PrettyString(inputMatrix);
             File.WriteAllText("output.txt", houseHolderOutput);
 
-            Console.WriteLine("Done !!   Output in output.txt");
+
+            Console.WriteLine("Done !!   Output in bin\\debug\\output.txt");
             Console.ReadLine();
         }
     }

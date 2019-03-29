@@ -99,21 +99,82 @@ namespace AM6004_CA3
                 A[k + 1, k] = A[k + 1, k] - (v[k + 1] * z[k]);
                 A[k, k + 1] = A[k + 1, k];
             }
-
-            MatrixOps.PrettyString(A);
         }
 
         static public double[] QR(double[] a, double[] b, int n, int MaxIt)
         {
-            double[,] P = MatrixOps.IdentityMatrix(n);
-            List<double[,]> rotationMatrices = new List<double[,]>();
-            for (int k = 1; k <= n; k++)
-            {
-                double denominator = Math.Sqrt(b[k + 1] * b[k + 1] + a[k] * a[k]);
-                double s = b[k + 1] / denominator;
-                double c = a[k] / denominator;
+            int k = 0;
+            double[] dVect = (double[])a.Clone();
+            double[] zVect = new double[n - 1];
+            double[] xVect = new double[n];
+            double[] cVect = new double[n];
+            double[] sigmaVect = new double[n];
+            double[] qVect = new double[n];
+            double[] yVect = new double[n];
+            double[] rVect = new double[n - 2];
 
-              //  double[,] rotationMatrix = MatrixOps.GenerateRotationMatix(s, c);
+
+            while (k++ < MaxIt)
+            {
+                // Step 8
+                double b2 = -(a[n - 2] + a[n - 1]);
+                double c = (a[n - 1] * a[n - 2]) - (b[n - 1] * b[n - 1]);
+                double d = Math.Sqrt((b2 * b2) - (4 * c));
+
+                // Step 9
+                double mu1;
+                double mu2;
+                if (b2 > 0)
+                {
+                    mu1 = -(2 * c) / (b2 + d);
+                    mu2 = -(b2 + d) / 2;
+                } else
+                {
+                    mu1 = (d - b2) / 2;
+                    mu2 = (2 * c) / (d - b2);
+                }
+
+                double sigma = (Math.Abs(mu1 - a[n - 1]) < Math.Abs(mu2 - a[n - 1]))
+                    ? mu1
+                    : mu2;
+
+                for (int i = 0; i < dVect.Length; i++)
+                {
+                    dVect[i] = a[i] - sigma;
+                }
+
+                // Step 14
+                xVect[0] = dVect[0];
+                yVect[0] = b[0];
+
+                // Step 15
+                for (int i = 1; i < n; i++)
+                {
+                    zVect[i - 1] = Math.Sqrt((xVect[i - 1] * xVect[i - 1]) + (b[i] * b[i]));
+                    cVect[i] = xVect[i - 1] / zVect[i - 1];
+                    sigmaVect[i] = b[i] / zVect[i - 1];
+
+                    double denominator = Math.Sqrt((b[i] * b[i]) + (xVect[i - 1] * xVect[i - 1]);
+                    double si = b[i] / denominator;
+                    qVect[i - 1] = (cVect[i] * yVect[i - 1]) + (si * dVect[i]);
+
+                    double ci = xVect[i - 1] / denominator;
+                    xVect[i] = -(sigma * yVect[i - 1]) + (ci * dVect[i]);
+
+                    if (i != (n - 1))
+                    {
+                        rVect[i - 1] = sigmaVect[i] * b[i + 1];
+                        yVect[i] = cVect[i] * b[i + 1]; 
+                    }
+                }
+
+                // Step 16
+                zVect[n - 1] = xVect[n - 1];
+                a[0] = (sigmaVect[1] * qVect[0]) + cVect[1] * zVect[0];
+                b[1] = sigmaVect[1] * zVect[1];
+
+                //Step 17
+
             }
 
             return null;
