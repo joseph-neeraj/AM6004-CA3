@@ -104,11 +104,9 @@ namespace AM6004_CA3
 
         static public double[] QR(double[] a, double[] b, int n, int MaxIt)
         {
-            int shift = 0;
-
-            for (int k = 0; k < MaxIt; )
+            double[,] P = new double[n, n];
+            for (int k = 1; k <= n; k++)
             {
-                // Step 3
 
             }
             
