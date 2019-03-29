@@ -102,17 +102,21 @@ namespace AM6004_CA3
             return sum;
         }
 
-        public static void PrettyPrint(double[,] A)
+        // Formats a matrix as a string
+        public static string PrettyString(double[,] A)
         {
+            string output = "";
             for (int i = 0; i < A.GetLength(0); i++)
             {
                 for (int j = 0; j < A.GetLength(1); j++)
                 {
-                    Console.Write("{0:0.00}" + "    ", A[i, j]);
+                    output += string.Format("{0, -20}" + "    ", A[i, j]);
                 }
 
-                Console.WriteLine();
+                output += Environment.NewLine;
             }
+
+            return output;
         }
 
         public static double[,] IdentityMatrix(int n)

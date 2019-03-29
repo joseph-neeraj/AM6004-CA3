@@ -100,7 +100,7 @@ namespace AM6004_CA3
                 A[k, k + 1] = A[k + 1, k];
             }
 
-            MatrixOps.PrettyPrint(A);
+            MatrixOps.PrettyString(A);
         }
 
         static public double[] QR(double[] a, double[] b, int n, int MaxIt)
